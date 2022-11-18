@@ -15,7 +15,7 @@ public class RecoverActivity extends AppCompatActivity {
 
     //Declare Variables
     EditText edit_username, edit_password, edit_confirm_password;
-    Button edit_button;
+    Button edit_button, edit_backbutton;
     LoginDatabase login_database;
 
     @Override
@@ -28,9 +28,19 @@ public class RecoverActivity extends AppCompatActivity {
         edit_password = findViewById(R.id.Recover_password);
         edit_confirm_password = findViewById(R.id.Recover_confirm_pasword);
         edit_button = findViewById(R.id.Recover_button);
+        edit_backbutton = findViewById(R.id.Recover_backbutton);
 
         //Declare database
         login_database = new LoginDatabase(this);
+
+        //Set Listener for the Backbutton
+        edit_backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RecoverActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //Set Listener for the complete button
         edit_button.setOnClickListener(new View.OnClickListener() {
