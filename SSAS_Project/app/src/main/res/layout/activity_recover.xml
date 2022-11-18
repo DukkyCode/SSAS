@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/ic_launcher_foreground"
+    tools:context=".RecoverActivity">
+
+    <TextView
+        android:id="@+id/Recover_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recover Password"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="20dp"
+        />
+
+    <EditText
+        android:id="@+id/Recover_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:hint="Username" />
+
+    <EditText
+        android:id="@+id/Recover_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:hint="Password" />
+
+    <EditText
+        android:id="@+id/Recover_confirm_pasword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:hint="Confirm new password" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Recover_button"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Complete"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
