@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_launcher_foreground"
+    tools:context=".StudentView">
+
+    <TextView
+        android:id="@+id/student_view_banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:text="Student View"
+        android:textStyle="bold"
+        android:textSize="25dp"/>
+
+    <TextView
+        android:id="@+id/student_view_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/student_view_banner"
+        android:text="Student name"/>
+
+    <TextView
+        android:id="@+id/student_view_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/student_view_banner"
+        android:layout_toRightOf="@id/student_view_info"
+        android:text="Student ID"/>
+
+    <TextView
+        android:id="@+id/student_view_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/student_view_info"
+        android:text="Student status"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/student_view_databutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/student_view_banner"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="110dp"
+        android:text="View Data"
+        android:textAllCaps="false"/>
+
+    <ListView
+        android:id="@+id/student_view_classlist"
+        android:layout_width="fill_parent"
+        android:layout_height="450dp"
+        android:layout_below="@+id/student_view_info"
+        android:layout_marginTop="30dp"
+        tools:listitem="@layout/student_class_item" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/student_view_backbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/student_view_classlist"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Back"/>
+
+</RelativeLayout>
