@@ -11,7 +11,7 @@
         android:id="@+id/student_view_banner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:text="Student View"
         android:textStyle="bold"
@@ -21,10 +21,10 @@
         android:id="@+id/student_view_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/student_view_banner"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/student_view_banner"
-        android:text="Student name"/>
+        android:text="Student name" />
 
     <TextView
         android:id="@+id/student_view_id"
@@ -37,30 +37,20 @@
         android:text="Student ID"/>
 
     <TextView
-        android:id="@+id/student_view_status"
+        android:id="@+id/student_view_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/student_view_info"
-        android:text="Student status"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/student_view_databutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/student_view_banner"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="110dp"
-        android:text="View Data"
-        android:textAllCaps="false"/>
+        android:text="Student email"/>
 
     <ListView
         android:id="@+id/student_view_classlist"
         android:layout_width="fill_parent"
-        android:layout_height="450dp"
+        android:layout_height="500dp"
         android:layout_below="@+id/student_view_info"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         tools:listitem="@layout/student_class_item" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -68,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/student_view_classlist"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:text="Back"/>
 

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.ssas_project.database.DAO;
 import com.example.ssas_project.database.MyDAO;
+import com.example.ssas_project.entity.Course;
+import com.example.ssas_project.entity.CourseOffering;
 import com.example.ssas_project.entity.Student;
 import com.example.ssas_project.entity.Types;
 
@@ -36,12 +38,28 @@ public class StudentIDLookup extends AppCompatActivity {
         //Initialize DAO
         myDAO = new MyDAO(this);
 
-        //Create a bunch of student with IDs
-        //for(int i = 0; i < 100; i++) {
-            //Student student = new Student(i, "44444", "44444@tufts.edu",
-                    //Types.StudentStatus.junior, "44444");
-            //myDAO.insertStudent(student);
-       // }
+        //Create Testing Database for students
+        Student student4 = new Student(3, "Duc Nguyen", "dnguye22@tufts.edu",
+                Types.StudentStatus.junior, "Credit Card");
+        myDAO.insertStudent(student4);
+
+        //Create Testing Database for Course Offering
+        Course c1 = new Course(1, "CS111 OS", false, 1);
+        myDAO.insertCourse(c1);
+
+        CourseOffering c2 = new CourseOffering(1, 1, 40, "JCC101");
+        myDAO.insertCourseOffering(c2);
+
+        CourseOffering c3 = new CourseOffering(2, 1, 30, "JCC102");
+        myDAO.insertCourseOffering(c3);
+
+        CourseOffering c4 = new CourseOffering(3, 1, 30, "JCC102");
+        myDAO.insertCourseOffering(c4);
+
+        //Enroll Students
+        myDAO.insertEnroll(1, 3);
+        myDAO.insertEnroll(2, 3);
+        myDAO.insertEnroll(3, 3);
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override

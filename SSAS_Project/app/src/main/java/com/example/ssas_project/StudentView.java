@@ -2,69 +2,102 @@ package com.example.ssas_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.EditText;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.example.ssas_project.database.DAO;
 import com.example.ssas_project.database.MyDAO;
-import pl.com.salsoft.sqlitestudioremote.SQLiteStudioService;
+import com.example.ssas_project.entity.CourseOffering;
 import com.example.ssas_project.entity.Student;
-import com.example.ssas_project.entity.Types;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class StudentView extends AppCompatActivity {
 
+
     private DAO myDAO;
-    private TextView edit_studentname,edit_studentid, edit_studentdob;
+    private TextView edit_studentname,edit_studentid, edit_studentemail;
     private Button edit_backbutton, edit_viewdata;
+    private ListView edit_listview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_student_view);
+
+        myDAO = new MyDAO(this);
 
         //Connect the variables to their ID
         edit_studentname = findViewById(R.id.student_view_info);
         edit_studentid = findViewById(R.id.student_view_id);
-        edit_studentdob = findViewById(R.id.student_view_status);
+        edit_studentemail = findViewById(R.id.student_view_email);
         edit_backbutton = findViewById(R.id.student_view_backbutton);
-        edit_viewdata = findViewById(R.id.student_view_databutton);
+
+        edit_listview =findViewById(R.id.student_view_classlist);
 
         //Retrieve ID from the last activity
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            String intent_id = extras.getString("ID");
-            Student student_info = myDAO.getStudent(Integer.parseInt(intent_id));
-            edit_studentname.setText(student_info.getName());
-            edit_studentid.setText(student_info.getId());
-            edit_studentdob.setText(student_info.getEmail());
+        Intent pre_intent = getIntent();
+        if(pre_intent.getExtras() == null){
         }
+        else{
+            //Set on click listener for Back Button
+            //Click listener to the back button
+            edit_backbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(StudentView.this, StudentIDLookup.class);
+                    startActivity(intent);
+                }
+            });
 
-        //Set on click listener for ViewDataButton
-        //Click listener to the view data button
-        edit_viewdata.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(StudentView.this, StudentData.class);
-                startActivity(intent);
+            Bundle bundle = getIntent().getExtras();
+            String search_id = bundle.getString("ID");
+
+            //Update the StudentView info
+            Student student = myDAO.getStudent(Integer.parseInt(search_id));
+            edit_studentname.setText(student.getName());
+
+            String email_str = String.format("Email: %s", student.getEmail());
+            edit_studentemail.setText(email_str);
+
+            String str = String.format("Student ID: %s", search_id);
+            edit_studentid.setText(str);
+
+            //Update List View
+            ArrayList<CourseOffering> array_courseoffering = new ArrayList<>();
+            List<List<Integer>> courseoffering_list = new ArrayList<>();
+
+            courseoffering_list.add(myDAO.getEnrollCourses(Integer.parseInt(search_id)));
+
+            for(int i = 0; i < courseoffering_list.size(); i ++){
+                List<Integer> list = courseoffering_list.get(i);
+                for(int j = 0; j < list.size(); j++){
+                    array_courseoffering.add(myDAO.getCourseOffering(list.get(j)));
+                }
             }
-        });
 
-        //Set on click listener for Back Button
-        //Click listener to the back button
-        edit_backbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(StudentView.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+            StudentViewListAdapter adapter = new StudentViewListAdapter(this, R.layout.student_class_item, array_courseoffering);
+            edit_listview.setAdapter(adapter);
+            edit_listview.setClickable(true);
 
+            //Setting to transition to Data View
+            edit_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                    Intent intent = new Intent(getApplicationContext(), StudentData.class);
+                    intent.putExtra("offer_id", adapter.getItem(position).getId());
+                    startActivity(intent);
+                }
+            });
+        }
     }
 }
