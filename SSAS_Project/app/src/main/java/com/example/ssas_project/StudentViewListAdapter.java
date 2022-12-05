@@ -34,10 +34,10 @@ public class StudentViewListAdapter extends ArrayAdapter<CourseOffering> {
         TextView courseoffering_room = convertView.findViewById(R.id.student_classoffering_room);
 
         //Setting the values of List Row
-        String str1 = String.format("Course ID: %s", getItem(position).getId());
+        String str1 = String.format("Course Offering ID: %s", getItem(position).getId());
         course_id.setText(str1);
 
-        String str2 = String.format("Course Offering ID: %s", getItem(position).getCourse_id());
+        String str2 = String.format("Course ID: %s", getItem(position).getCourse_id());
         courseoffering_id.setText(str2);
 
         String str3 = String.format("Number of students: %s", getItem(position).getStudentsNum());

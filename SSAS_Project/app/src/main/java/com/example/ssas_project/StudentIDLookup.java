@@ -10,14 +10,16 @@ import com.example.ssas_project.entity.CourseOffering;
 import com.example.ssas_project.entity.Student;
 import com.example.ssas_project.entity.Types;
 
-import pl.com.salsoft.sqlitestudioremote.SQLiteStudioService;
-
-
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.Toast;
 import android.view.View;
 import android.content.Intent;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 
@@ -26,6 +28,37 @@ public class StudentIDLookup extends AppCompatActivity {
     private DAO myDAO;
     private EditText edit_id;
     private Button edit_button;
+
+    public void InsertTime() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2022, 11, 3, 12,0,0);
+        Date date = calendar.getTime();
+        myDAO.insertTime(1, date);
+
+        calendar.set(2022, 11, 4, 6,0,0);
+        date = calendar.getTime();
+        myDAO.insertTime(1, date);
+
+        calendar.set(2022, 11, 5, 19,0,0);
+        date = calendar.getTime();
+        myDAO.insertTime(1, date);
+    }
+
+
+    public void insertAttendance() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2022, 11, 3, 12,0,0);
+        Date date = calendar.getTime();
+        myDAO.insertAttendance(3, 1, date, true);
+
+        calendar.set(2022, 11, 4, 6,0,0);
+        date = calendar.getTime();
+        myDAO.insertAttendance(3, 1, date, false);
+
+        calendar.set(2022, 11, 5, 19,0,0);
+        date = calendar.getTime();
+        myDAO.insertAttendance(3, 1, date, true);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +94,15 @@ public class StudentIDLookup extends AppCompatActivity {
         myDAO.insertEnroll(2, 3);
         myDAO.insertEnroll(3, 3);
 
+        InsertTime();
+        insertAttendance();
+
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String id = edit_id.getText().toString();
                 Intent intent = new Intent(StudentIDLookup.this,StudentView.class);
-                intent.putExtra("ID", id);
+                intent.putExtra("student_id", id);
                 startActivity(intent);
             }
         });

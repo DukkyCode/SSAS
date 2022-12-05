@@ -60,7 +60,7 @@ public class StudentView extends AppCompatActivity {
             });
 
             Bundle bundle = getIntent().getExtras();
-            String search_id = bundle.getString("ID");
+            String search_id = bundle.getString("student_id");
 
             //Update the StudentView info
             Student student = myDAO.getStudent(Integer.parseInt(search_id));
@@ -94,7 +94,8 @@ public class StudentView extends AppCompatActivity {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                     Intent intent = new Intent(getApplicationContext(), StudentData.class);
-                    intent.putExtra("offer_id", adapter.getItem(position).getId());
+                    intent.putExtra("offer_id", String.valueOf(array_courseoffering.get(position).getId()));
+                    intent.putExtra("student_id", search_id);
                     startActivity(intent);
                 }
             });

@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="30dp"
-            android:text="Class ID"
+            android:text="Class Offering ID"
             android:textSize="20dp"
             android:textStyle="bold"/>
 
@@ -24,7 +24,7 @@
             android:layout_toRightOf="@+id/student_class_id"
             android:layout_marginTop="25dp"
             android:layout_marginLeft="30dp"
-            android:text="Class Offering ID"/>
+            android:text="Class ID"/>
 
 
         <TextView
