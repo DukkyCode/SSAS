@@ -1,4 +1,4 @@
-#Smart Student Attendance System
+# Smart Student Attendance System
 
 • The  mobile  attendance  system  should  eliminate  the  time  and  effort  wasted  in  taking  
 attendances in schools and colleges. It also greatly reduces the amount of paper resources 
